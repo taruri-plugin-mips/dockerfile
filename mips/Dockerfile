@@ -7,8 +7,6 @@ deb http://archive.debian.org/debian/ buster main contrib non-free
 deb http://archive.debian.org/debian/ buster-updates main contrib non-free
 EOF
 
-RUN apt update
-
 RUN apt update && apt install -y --no-install-recommends \
     libwebkit2gtk-4.0-dev \
     build-essential \
@@ -18,12 +16,15 @@ RUN apt update && apt install -y --no-install-recommends \
     libssl-dev \
     libgtk-3-dev \
     libayatana-appindicator3-dev \
-    librsvg2-dev
+    librsvg2-dev \
+    ca-certificates
 
 RUN echo 'export RUSTUP_DIST_SERVER="https://rsproxy.cn"' >> ~/.bashrc && \
     echo 'export RUSTUP_UPDATE_ROOT="https://rsproxy.cn/rustup"' >> ~/.bashrc
 
-RUN source ~/.bashrc
+RUN bash -c "source ~/.bashrc"
+
+RUN update-ca-certificates
 
 RUN curl --proto '=https' --tlsv1.2 -sSf https://rsproxy.cn/rustup-init.sh | sh -s -- -y --default-toolchain 1.71.0
 
@@ -44,3 +45,5 @@ index = "https://rsproxy.cn/crates.io-index"
 [net]
 git-fetch-with-cli = true
 EOF
+
+RUN cargo install tauri-cli@1.6.0 --locked
