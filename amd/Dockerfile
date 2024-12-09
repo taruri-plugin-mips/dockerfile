@@ -1,4 +1,4 @@
-FROM mips64le/debian:10.12
+FROM amd64/debian:10.12
 
 LABEL maintainer="tauri-build@tauri-build.cn"
 
