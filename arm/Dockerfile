@@ -26,7 +26,7 @@ RUN bash -c "source ~/.bashrc"
 
 RUN update-ca-certificates
 
-RUN curl --proto '=https' --tlsv1.2 -sSf https://rsproxy.cn/rustup-init.sh | sh -s -- -y --default-toolchain 1.71.0
+RUN curl --proto '=https' --tlsv1.2 -sSf https://rsproxy.cn/rustup-init.sh | sh -s -- -y --default-toolchain 1.71.1
 
 RUN mkdir -p ~/.cargo && \
     cat <<EOF > ~/.cargo/config
