@@ -12,17 +12,20 @@ apt update && apt install -y --no-install-recommends binfmt-support qemu-user-st
 # run multiarch/qemu-user-static open qemu function
 docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 
+# create docker.images.txt
+touch docker.images.txt
+
 # build images
 for dir in */; do
     clean_name=$(echo "${dir%%/}" | tr '[:upper:]' '[:lower:]' | tr ' ' '_' | tr -cd '[:alnum:]_-')
 
-    # 检查是否有 Dockerfile
     if [ -f "$dir/Dockerfile" ]; then
-        echo "Building Docker image for directory: $dir"
+        echo "TIP: Building Docker image for directory: $dir"
         docker build -t tuari-debian:"$clean_name" "$dir" || {
             echo "ERROR: Failed to build image for $dir"
             continue
         }
+        echo tuari-debian:"$clean_name" >> ./docker.images.txt
     else
         echo "WARNING: No Dockerfile found in $dir. Skipping..."
     fi
