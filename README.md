@@ -16,3 +16,11 @@
 ```bash
 ./install.sh
 ```
+
+### start.sh
+
+在编译完成后，可以运行 `start.sh` 启动 docker 镜像
+
+```bash
+./start.sh
+```
