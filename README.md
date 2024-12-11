@@ -4,8 +4,15 @@
 
 ## 环境
 
-- 确保你的机器安装了 docker
-- 确保你的机器 CPU 架构是 x86_64
+- 确保机器安装了 docker
+- 确保机器 CPU 架构是 x86_64
 
 ## 使用
 
+### install.sh
+
+在检查机器环境后，可以运行 `install.sh` 将 dockerfile 编译成 docker 镜像
+
+```bash
+./install.sh
+```
