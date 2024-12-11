@@ -15,5 +15,6 @@ images=$(cat ./docker.images.txt)
 # 循环 images，在docker中后台运行
 for image in $images; do
     echo "TIP: Running Docker image: $image"
-    docker run -d -v /root/code:/root/code --name $image_container $image tail -f /dev/null
+    clean_name=$(echo "${image%%/}" | tr '[:upper:]' '[:lower:]' | tr ' ' '_' | tr -cd '[:alnum:]_-')
+    docker run -d -v /root/code:/root/code --name container_$clean_name $image
 done
