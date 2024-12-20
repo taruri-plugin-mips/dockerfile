@@ -12,6 +12,9 @@ apt update && apt install -y --no-install-recommends binfmt-support qemu-user-st
 # run multiarch/qemu-user-static open qemu function
 docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 
+# remove docker.images.txt
+rm -f docker.images.txt
+
 # create docker.images.txt
 touch docker.images.txt
 
